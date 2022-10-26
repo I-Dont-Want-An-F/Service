@@ -12,45 +12,45 @@ DROP TABLE IF EXISTS class;
 CREATE TABLE class (
 	ID integer PRIMARY KEY,
 	longName varchar(50),
-    shortName varchar(10),
-    subject varchar(50)
+    	shortName varchar(10),
+    	subject varchar(50)
 	);
 
 CREATE TABLE users (
 	ID integer PRIMARY KEY, 
-    name varchar(50),
-    emailAddress varchar(50) NOT NULL,
-    position varchar(20)
+   	name varchar(50),
+   	emailAddress varchar(50) NOT NULL,
+    	position varchar(20)
 	);
 
 CREATE TABLE userclass (
 	ID integer PRIMARY KEY, 
-    userID integer references users(ID),
+    	userID integer references users(ID),
 	classID integer references class(ID)
 	);
 
 CREATE TABLE  rating (
-	 ID integer PRIMARY KEY,
-     classID integer references class(ID),
-    stars integer, 
-    hw varchar(10)
+	ID integer PRIMARY KEY,
+     	classID integer references class(ID),
+    	stars integer, 
+    	hw varchar(10)
      --need to finialze what stats we want 
 	);
 
 CREATE TABLE post(
-    ID integer PRIMARY KEY, 
-    classID integer references class(ID),
-    question boolean,
-    userID integer references users(ID),
-    date integer,
-    text varchar(200)
+    	ID integer PRIMARY KEY, 
+    	classID integer references class(ID),
+    	question boolean,
+    	userID integer references users(ID),
+    	date integer,
+    	text varchar(200)
 );
 
 create table reply(
-    ID integer PRIMARY KEY, 
-    postID integer references post(ID),
-    userID integer references users(ID),
-    text varchar(200)
+  	ID integer PRIMARY KEY, 
+  	postID integer references post(ID),
+    	userID integer references users(ID),
+  	text varchar(200)
     );
 
 
