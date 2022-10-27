@@ -35,3 +35,11 @@ and post.question = true;
 select stars, hw from rating, class
 where class.shortName = 'cs 112'
 and class.ID=rating.classID;
+
+--create a comment (not working)
+--insert into post(classID, question, userID, date, text)
+--values(${1}, ${false}, ${1}, ${'10272022'}, ${'cs112 is boring'});
+
+--create a post 
+
+--create a reply to a comment or post 
