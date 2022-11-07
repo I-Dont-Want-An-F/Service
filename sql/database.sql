@@ -20,8 +20,9 @@ CREATE TABLE users (
 	ID integer PRIMARY KEY, 
    	name varchar(50),
    	emailAddress varchar(50) NOT NULL,
-    	position varchar(20),
-	sessiontoken varchar(16)
+    	position varchar(20)
+	--sessiontoken varchar(16) --token for quick login 
+	--session expire date
 	);
 
 CREATE TABLE userclass (
