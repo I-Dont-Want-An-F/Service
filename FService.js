@@ -117,6 +117,7 @@ function questions(req, res, next) {
     })
 }
 
+//selects the rating for a certain class
 function rating(req, res, next) {
     db.oneOrNone("select stars, hw, dif, book from rating, class where class.shortName =%{id} and class.ID=rating.classID", req.params)
     .then(data => {
