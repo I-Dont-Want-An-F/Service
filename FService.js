@@ -19,7 +19,7 @@ router.use(express.json());
 
 router.get("/", readHelloMessage);
 router.get("/prof/:id", readProf); //selects prof that teach a certain class 
-router.get("/classtaken/:id", readPlayer);
+router.get("/classtaken/:id", classTook);
 
 
 
@@ -70,32 +70,4 @@ function classTook(req, res, next) {
         });
 }
 
-function updatePlayer(req, res, next) {
-    db.oneOrNone('UPDATE Player SET email=${body.email}, name=${body.name} WHERE id=${params.id} RETURNING id', req)
-        .then(data => {
-            returnDataOr404(res, data);
-        })
-        .catch(err => {
-            next(err);
-        });
-}
-
-function createPlayer(req, res, next) {
-    db.one('INSERT INTO Player(email, name) VALUES (${email}, ${name}) RETURNING id', req.body)
-        .then(data => {
-            res.send(data);
-        })
-        .catch(err => {
-            next(err);
-        });
-}
-
-function deletePlayer(req, res, next) {
-    db.oneOrNone('DELETE FROM Player WHERE id=${id} RETURNING id', req.params)
-        .then(data => {
-            returnDataOr404(res, data);
-        })
-        .catch(err => {
-            next(err);
-        });
-}
+ 
