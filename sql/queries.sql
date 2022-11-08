@@ -1,4 +1,4 @@
--- created by dylan mount
+ -- created by dylan mount
 
 --select professors that teach a certain class
 Select name from  users, userclass, class
@@ -12,7 +12,16 @@ Select shortName from  users, userclass, class
 where users.position = 'student' 
 and users.name = 'john'
 and userclass.classID=class.ID 
-and userclass.userID=users.ID;
+and userclass.userID=users.ID
+and role= 'taking';
+
+--select certain classes a student has completed
+Select shortName from  users, userclass, class
+where users.position = 'student' 
+and users.name = 'john'
+and userclass.classID=class.ID 
+and userclass.userID=users.ID
+and role= 'completed';
 
 --select all post for a certain class
 select text from post, class
@@ -35,11 +44,3 @@ and post.question = true;
 select stars, hw from rating, class
 where class.shortName = 'cs 112'
 and class.ID=rating.classID;
-
---create a comment (not working)
---insert into post(classID, question, userID, date, text)
---values(${1}, ${false}, ${1}, ${'10272022'}, ${'cs112 is boring'});
-
---create a post 
-
---create a reply to a comment or post 

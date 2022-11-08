@@ -1,60 +1,67 @@
-  --Database designed by Dylan 
+   --Database designed by Dylan 
 -- 
 
 DROP TABLE IF EXISTS reply;
 DROP TABLE IF EXISTS post;
 DROP TABLE IF EXISTS rating;
 DROP TABLE IF EXISTS userclass;
+DROP TABLE IF EXISTS messages;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS class;
+
 
 -- Create the schema.
 CREATE TABLE class (
 	ID integer PRIMARY KEY,
 	longName varchar(50),
-    	shortName varchar(10),
-    	subject varchar(50)
+    shortName varchar(10),
+    subject varchar(50)
 	);
 
 CREATE TABLE users (
 	ID integer PRIMARY KEY, 
-   	name varchar(50),
-   	emailAddress varchar(50) NOT NULL,
-    	position varchar(20)
-	--sessiontoken varchar(16) --token for quick login 
-	--session expire date
+    name varchar(50),
+    emailAddress varchar(50) NOT NULL,
+    position varchar(20)
 	);
 
 CREATE TABLE userclass (
 	ID integer PRIMARY KEY, 
-    	userID integer references users(ID),
-	classID integer references class(ID)
+    userID integer references users(ID),
+	classID integer references class(ID),
+    role varchar(15)
 	);
 
 CREATE TABLE  rating (
-	ID integer PRIMARY KEY,
-     	classID integer references class(ID),
-    	stars integer, 
-    	hw varchar(10)
+	 ID integer PRIMARY KEY,
+     classID integer references class(ID),
+    stars integer, 
+    hw varchar(10)
      --need to finialze what stats we want 
 	);
 
 CREATE TABLE post(
-    	ID integer PRIMARY KEY, 
-    	classID integer references class(ID),
-    	question boolean,
-    	userID integer references users(ID),
-    	date integer,
-    	text varchar(200)
+    ID integer PRIMARY KEY, 
+    classID integer references class(ID),
+    question boolean,
+    userID integer references users(ID),
+    date integer,
+    text varchar(200)
 );
 
 create table reply(
-  	ID integer PRIMARY KEY, 
-  	postID integer references post(ID),
-    	userID integer references users(ID),
-  	text varchar(200)
+    ID integer PRIMARY KEY, 
+    postID integer references post(ID),
+    userID integer references users(ID),
+    date integer,
+    text varchar(200)
     );
 
+create table messages(
+    ID integer PRIMARY KEY,
+    user1 integer references users(ID),
+    user2 integer references users(ID)
+);
 
 
 -- Allow users to select data from the tables.
@@ -77,9 +84,9 @@ insert into users values(1,'john','abc12@calvin.edu', 'student');
 insert into users values(2, 'josh', 'def34@calvin.edu', 'professor');
 
 --userclass 
-insert into userclass values(1,1,1);
-insert into userclass values(2,1,2);
-insert into userclass values(3,2,2);
+insert into userclass values(1,1,1,'taking');
+insert into userclass values(2,1,2,'completed');
+insert into userclass values(3,2,2,'teaching');
 
 --stats 
 insert into rating values(1,1,3.2,'weekly');
@@ -93,4 +100,4 @@ insert into post values(5,2,false,1,10252022,'I really like working on the app')
 
 
 --reply
-insert into reply values(1,1,2,'yes');
+insert into reply values(1,1,2,10252022,'yes');
