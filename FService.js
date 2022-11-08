@@ -19,7 +19,11 @@ router.use(express.json());
 
 router.get("/", readHelloMessage);
 router.get("/prof/:id", readProf); //selects prof that teach a certain class 
-router.get("/classtaken/:id", classTook);
+router.get("/classtake/:id", classTake); // selects the classes a student is taking
+router.get("/classtook/:id",classTook); //selects the classes a student has taken
+router.get("post/:id", posts) //selects all the posts for a given class
+router.get("comments/:id", comments) //selects all the comments for a given class
+router.get("questions/:id", questions) //selects all the questions for a given class
 
 
 
@@ -60,7 +64,7 @@ function readProf(req, res, next) {
 }
 
 //selects the classes a user is taking 
-function classTook(req, res, next) {
+function classTake(req, res, next) {
     db.many("Select shortName from  users, userclass, class WHERE users.position = 'student' AND users.name = ${id} and userclass.classID=class.ID and userclass.userID=users.ID and role= 'taking'", req.params)
     .then(data => {
         res.send(data);
@@ -70,4 +74,45 @@ function classTook(req, res, next) {
     })
 }
 
- 
+ //selects the classes a user has completed
+function classTook(req, res, next) {
+    db.many(" Select shortName from  users, userclass, class where users.position = 'student' and users.name = ${id} and userclass.classID=class.ID  and userclass.userID=users.ID and role= 'completed'", req.params)
+    .then(data => {
+        res.send(data);
+    })
+    .catch(err => {
+        next(err);
+    })
+}
+
+ //selects all posts for a certain class 
+ function posts(req, res, next) {
+    db.many( "select text from post, class where post.classID=class.ID and class.shortName= ${id}", req.params)
+    .then(data => {
+        res.send(data);
+    })
+    .catch(err => {
+        next(err);
+    })
+}
+
+//selects all comments for a certain class 
+function comments(req, res, next) {
+    db.many( "select text from post, class where post.classID=class.ID and class.shortName=%{id} and post.question = false", req.params)
+    .then(data => {
+        res.send(data);
+    })
+    .catch(err => {
+        next(err);
+    })
+}
+//selects all the questions for a certian class
+function questions(req, res, next) {
+    db.many( "select text from post, class where post.classID=class.ID and class.shortName=%{id} and post.question = true", req.params)
+    .then(data => {
+        res.send(data);
+    })
+    .catch(err => {
+        next(err);
+    })
+}
