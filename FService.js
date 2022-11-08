@@ -50,7 +50,7 @@ function readHelloMessage(req, res) {
 
 //selects proff that teach a certain class 
 function readProf(req, res, next) {
-    db.many("Select name from  users, userclass, class where users.position = 'professor' and userclass.classID=class.ID  and userclass.userID=users.ID and class.shortName = =${id}", req.params)
+    db.many("Select name from  users, userclass, class where users.position = 'professor' and userclass.classID=class.ID  and userclass.userID=users.ID and class.shortName =${id}", req.params)
         .then(data => {
             res.send(data);
         })
