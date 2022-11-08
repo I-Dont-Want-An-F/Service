@@ -21,9 +21,9 @@ router.get("/", readHelloMessage);
 router.get("/prof/:id", readProf); //selects prof that teach a certain class 
 router.get("/classtake/:id", classTake); // selects the classes a student is taking
 router.get("/classtook/:id",classTook); //selects the classes a student has taken
-router.get("post/:id", posts) //selects all the posts for a given class
-router.get("comments/:id", comments) //selects all the comments for a given class
-router.get("questions/:id", questions) //selects all the questions for a given class
+router.get("/post/:id", posts) //selects all the posts for a given class
+router.get("/comments/:id", comments) //selects all the comments for a given class
+router.get("/questions/:id", questions) //selects all the questions for a given class
 
 
 
@@ -87,7 +87,7 @@ function classTook(req, res, next) {
 
  //selects all posts for a certain class 
  function posts(req, res, next) {
-    db.many( "select text from post, class where post.classID=class.ID and class.shortName= ${id}", req.params)
+    db.many("select text from post, class where post.classID=class.ID and class.shortName =${id}", req.params)
     .then(data => {
         res.send(data);
     })
