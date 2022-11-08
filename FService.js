@@ -61,7 +61,7 @@ function readProf(req, res, next) {
 
 //selects the classes a user is taking 
 function classTook(req, res, next) {
-    db.many('Select shortName from  users, userclass, class WHERE users.position = "student" AND users.name = ${id} and userclass.classID=class.ID and userclass.userID=users.ID and role= "taking"', req.params)
+    db.many("Select shortName from  users, userclass, class WHERE users.position = 'student' AND users.name = ${id} and userclass.classID=class.ID and userclass.userID=users.ID and role= 'taking'", req.params)
     .then(data => {
         res.send(data);
     })
