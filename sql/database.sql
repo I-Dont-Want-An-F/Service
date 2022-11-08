@@ -35,8 +35,10 @@ CREATE TABLE userclass (
 CREATE TABLE  rating (
 	 ID integer PRIMARY KEY,
      classID integer references class(ID),
-    stars integer, 
-    hw varchar(10)
+    stars integer, --out of 5 
+    hw varchar(10),  --easy medium hard
+	dif integer, --out of 5 
+	book varchar(15) --varies 
      --need to finialze what stats we want 
 	);
 
@@ -89,7 +91,7 @@ insert into userclass values(2,1,2,'completed');
 insert into userclass values(3,2,2,'teaching');
 
 --stats 
-insert into rating values(1,1,3.2,'weekly');
+insert into rating values(1,1,3.2,'weekly',4.3,'none');
 
 --post 
 insert into post values(1,1,true,1,11202022, 'is the professor helpful');
