@@ -24,7 +24,7 @@ router.get("/classtook/:id",classTook); //selects the classes a student has take
 router.get("/post/:id", posts); //selects all the posts for a given class
 router.get("/comments/:id", comments);//selects all the comments for a given class
 router.get("/questions/:id", questions); //selects all the questions for a given class
-
+router.get("/rating/:id", rating);
 
 
 app.use(router);
@@ -98,7 +98,7 @@ function classTook(req, res, next) {
 
 //selects all comments for a certain class 
 function comments(req, res, next) {
-    db.many( "select text from post, class where post.classID=class.ID and class.shortName =%{id} and post.question = false", req.params)
+    db.many("select text from post, class where post.classID=class.ID and class.shortName =%{id} and post.question = false", req.params)
     .then(data => {
         res.send(data);
     })
@@ -108,7 +108,17 @@ function comments(req, res, next) {
 }
 //selects all the questions for a certian class
 function questions(req, res, next) {
-    db.many( "select text from post, class where post.classID=class.ID and class.shortName =%{id} and post.question = true", req.params)
+    db.many("select text from post, class where post.classID=class.ID and class.shortName =%{id} and post.question = true", req.params)
+    .then(data => {
+        res.send(data);
+    })
+    .catch(err => {
+        next(err);
+    })
+}
+
+function rating(req, res, next) {
+    db.many("select stars, hw from rating, class where class.shortName =%{id} and class.ID=rating.classID", req.params)
     .then(data => {
         res.send(data);
     })
