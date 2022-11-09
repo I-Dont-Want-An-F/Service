@@ -25,7 +25,7 @@ router.get("/post/:id", posts); //selects all the posts for a given class
 router.get("/comments/:id", comments);//selects all the comments for a given class
 router.get("/questions/:id", questions); //selects all the questions for a given class
 router.get("/rating/:id", rating);// retuns a rating for a class 
-router.get("classes", classes); //returns all classes 
+router.get("/classes", classes); //returns all classes 
 
 
 app.use(router);
@@ -131,7 +131,7 @@ function rating(req, res, next) {
 
 //selects all the classes 
 function classes(req, res, next) {
-    db.oneOrNone("select * from class", req.params)
+    db.many("select * from class", req.params)
     .then(data => {
         res.send(data);
     })
