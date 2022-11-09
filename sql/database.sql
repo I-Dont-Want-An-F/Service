@@ -21,6 +21,7 @@ CREATE TABLE class (
 CREATE TABLE users (
 	ID integer PRIMARY KEY, 
     name varchar(50),
+    username varchar(50),
     emailAddress varchar(50) NOT NULL,
     position varchar(20)
 	);
@@ -87,13 +88,13 @@ insert into class values(6, 'Calculus 1', 'MATH 171', 'MATH');
 
 
 --users
-insert into users values(1,'john','abc12@calvin.edu', 'student');
-insert into users values(2, 'Derek Schuurman', 'derek.schurrman@calvin.edu', 'professor');
-insert into users values(3, 'Keith VanderLinden', 'keith.vanderlinden@calvin.edu', 'professor');
-insert into users values(4, 'Chris Moseley', 'chris.moseley@calvin.edu', 'professor');
-insert into users values(5, 'Victor Norman', 'victor.norman@calvin.edu', 'professor');
-insert into users values(6, 'Mark Michmerhuizen', 'mark.michmerhuizen@calvin.edu', 'professor');
-insert into users values(7, 'joe', 'def12@calvin.edu', 'studnent');
+insert into users values(1,'john','abc12','abc12@calvin.edu', 'student');
+insert into users values(2, 'Derek Schuurman','derek.schurrman', 'derek.schurrman@calvin.edu', 'professor');
+insert into users values(3, 'Keith VanderLinden','keith.vanderlinden', 'keith.vanderlinden@calvin.edu', 'professor');
+insert into users values(4, 'Chris Moseley','chris.moseley', 'chris.moseley@calvin.edu', 'professor');
+insert into users values(5, 'Victor Norman','victor.norman', 'victor.norman@calvin.edu', 'professor');
+insert into users values(6, 'Mark Michmerhuizen', 'mark.michmerhuizen', 'mark.michmerhuizen@calvin.edu', 'professor');
+insert into users values(7, 'joe','def12', 'def12@calvin.edu', 'studnent');
 
 --userclass 
 insert into userclass values(1,1,1,'taking');
