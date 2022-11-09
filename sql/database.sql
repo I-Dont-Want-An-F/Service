@@ -32,13 +32,13 @@ CREATE TABLE userclass (
     role varchar(15)
 	);
 
-CREATE TABLE  rating (
+CREATE TABLE rating (
 	 ID integer PRIMARY KEY,
      classID integer references class(ID),
     stars integer, --out of 5 
     hw varchar(10),  --easy medium hard
 	dif integer, --out of 5 
-	book varchar(15) --varies 
+	book varchar(50) --varies 
      --need to finialze what stats we want 
 	);
 
@@ -48,7 +48,7 @@ CREATE TABLE post(
     question boolean,
     userID integer references users(ID),
     date integer,
-    text varchar(200)
+    text varchar(1000)
 );
 
 create table reply(
@@ -56,7 +56,7 @@ create table reply(
     postID integer references post(ID),
     userID integer references users(ID),
     date integer,
-    text varchar(200)
+    text varchar(1000)
     );
 
 create table messages(
@@ -72,33 +72,73 @@ GRANT SELECT ON users TO PUBLIC;
 GRANT select ON userclass to PUBLIC;
 GRANT SELECT ON post to PUBLIC; 
 GRANT SELECT ON rating to PUBLIC; 
+GRANT SELECT ON messages to PUBLIC;
 
 
 -- Add sample records.
 
  --classes
-insert into class values (1,'intro to data structures', 'cs 112', 'cs');
-insert into class values(2,'web devolomnet', 'cs 262', 'cs');
-insert into class values(3,'computer engineering', 'engr 220','cs');
+insert into class values(1,'Intro to data Structures', 'CS 112', 'CS');
+insert into class values(2,'Software Engineering', 'CS 262', 'CS');
+insert into class values(3,'Intro to Computer Architecture', 'ENGR 220','ENGR');
+insert into class values(4, 'Applied Computing', 'CS 104', 'CS');
+insert into class values(5, 'Intro to Computing', 'CS 108','CS');
+insert into class values(6, 'Calculus 1', 'MATH 171', 'MATH');
+
 
 --users
 insert into users values(1,'john','abc12@calvin.edu', 'student');
-insert into users values(2, 'josh', 'def34@calvin.edu', 'professor');
+insert into users values(2, 'Derek Schuurman', 'derek.schurrman@calvin.edu', 'professor');
+insert into users values(3, 'Keith VanderLinden', 'keith.vanderlinden@calvin.edu', 'professor');
+insert into users values(4, 'Chris Moseley', 'chris.moseley@calvin.edu', 'professor');
+insert into users values(5, 'Victor Norman', 'victor.norman@calvin.edu', 'professor');
+insert into users values(6, 'Mark Michmerhuizen', 'mark.michmerhuizen@calvin.edu', 'professor');
+insert into users values(7, 'joe', 'def12@calvin.edu', 'studnent');
 
 --userclass 
 insert into userclass values(1,1,1,'taking');
-insert into userclass values(2,1,2,'completed');
-insert into userclass values(3,2,2,'teaching');
+insert into userclass values(2,2,2,'completed');
+insert into userclass values(3,3,2,'teaching');
+insert into userclass values(4,4,6,'teaching');
+insert into userclass values(5,5,1,'teaching');
+insert into userclass values(6,6,3,'teaching');
+insert into userclass values(7,7,2,'teaching');
+insert into userclass values(8,3,5,'teaching');
+insert into userclass values(9,2,4,'teaching');
+insert into userclass values(10,1,3,'taking');
+insert into userclass values(11,1,4,'taking');
+insert into userclass values(12,1,5,'completed');
 
 --stats 
-insert into rating values(1,1,3.2,'weekly',4.3,'none');
+insert into rating values(1,1,4.5,'weeky',2.9,'not required but recommended'); --cs 112
+insert into rating values(2,2,4.8,'weekly',3.2,'not required'); --cs 262
+insert into rating values(3,3,2.1,'never',4.3,'none'); --engr 220
+insert into rating values(4,4,3.0,'daily',2.5,'none'); -- cs 104
+insert into rating values(5,5,4.8,'weekly',3.0,'Online resource'); --cs 108 
+insert into rating values(6,6,4.5,'weekly',2.8,'not required'); --math 271
+
 
 --post 
-insert into post values(1,1,true,1,11202022, 'is the professor helpful');
-insert into post values(2,1,false,1,11202022, 'this class is boring');
-insert into post values(3,1,true,1,11202022, 'Should I make lab 1 easier');
-insert into post values(4,1, false,2,11202022, 'there is no textbook');
-insert into post values(5,2,false,1,10252022,'I really like working on the app');
+insert into post values(1,1,true,1,11202022, 'is the professor helpful'); --cs 112
+insert into post values(2,1,false,1,11202022, 'this class is boring');  --cs 112 
+insert into post values(3,1,true,1,11202022, 'Should I make lab 1 easier'); --cs 112
+insert into post values(4,1, false,2,11202022, 'there is no textbook'); --cs 112
+
+insert into post values(5,2,false,1,11072022,'I love learning JavaScript'); -- cs 262 
+insert into post values(6,2,true,7,11072022, 'Are you guys ready for the presentation?'); --cs  262
+
+insert into post values(7,3,false,1,11072022, 'this class is boring');  --engr 220 comment
+insert into post values(8,3,true,7,11072022, 'Should I make lab 1 easier'); --engr 220 question 
+
+insert into post values(9,4, false,1,11072022, 'This class is hard'); -- cs 104 comment 
+insert into post values(10,4,false,7,11072022,'When is this class offered'); --cs 104 question 
+
+insert into post values(11,5,true,1,11072022, 'Very helpful class'); --cs 108 comment 
+insert into post values(12,5,false,7,11072022, 'I deleted my Thonny! How can I fix this');  --cs 108 question 
+
+insert into post values(13,6,true,1,11072022, 'Very easy if you took calc in high school'); --math 171 comment 
+insert into post values(14,6, false,7,11072022, 'What is the best way to study for the tests'); --math 171 question 
+ 
 
 
 --reply
