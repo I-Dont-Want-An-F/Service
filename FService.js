@@ -26,6 +26,7 @@ router.get("/comments/:id", comments);//selects all the comments for a given cla
 router.get("/questions/:id", questions); //selects all the questions for a given class
 router.get("/rating/:id", rating);// retuns a rating for a class 
 router.get("/classes", classes); //returns all classes 
+router.get("/reply/:id", reply); //returns the reply to a comment 
 
 
 app.use(router);
@@ -88,7 +89,7 @@ function classTook(req, res, next) {
 
  //selects all posts for a certain class 
  function posts(req, res, next) {
-    db.many("select text from post, class where post.classID=class.ID and class.shortName =${id}", req.params)
+    db.many("select text,ID from post, class where post.classID=class.ID and class.shortName =${id}", req.params)
     .then(data => {
         res.send(data);
     })
@@ -99,7 +100,7 @@ function classTook(req, res, next) {
 
 //selects all comments for a certain class 
 function comments(req, res, next) {
-    db.many("select text from post, class where post.classID=class.ID and class.shortName =${id} and post.question = false", req.params)
+    db.many("select text,ID from post, class where post.classID=class.ID and class.shortName =${id} and post.question = false", req.params)
     .then(data => {
         res.send(data);
     })
@@ -109,7 +110,7 @@ function comments(req, res, next) {
 }
 //selects all the questions for a certian class
 function questions(req, res, next) {
-    db.many("select text from post, class where post.classID=class.ID and class.shortName =${id} and post.question = true", req.params)
+    db.many("select text,ID from post, class where post.classID=class.ID and class.shortName =${id} and post.question = true", req.params)
     .then(data => {
         res.send(data);
     })
@@ -132,6 +133,18 @@ function rating(req, res, next) {
 //selects all the classes 
 function classes(req, res, next) {
     db.many("select * from class", req.params)
+    .then(data => {
+        res.send(data);
+    })
+    .catch(err => {
+        next(err);
+    })
+}
+
+
+//selects the reply 
+function reply(req, res, next) {
+    db.many("select * from reply where reply.postID= ${id}", req.params)
     .then(data => {
         res.send(data);
     })
