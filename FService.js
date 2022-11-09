@@ -1,4 +1,4 @@
- 
+  
 // Set up the database connection.
 const pgp = require('pg-promise')();
 const db = pgp({
@@ -24,7 +24,8 @@ router.get("/classtook/:id",classTook); //selects the classes a student has take
 router.get("/post/:id", posts); //selects all the posts for a given class
 router.get("/comments/:id", comments);//selects all the comments for a given class
 router.get("/questions/:id", questions); //selects all the questions for a given class
-router.get("/rating/:id", rating);
+router.get("/rating/:id", rating);// retuns a rating for a class 
+router.get("classes", classes); //returns all classes 
 
 
 app.use(router);
@@ -120,6 +121,17 @@ function questions(req, res, next) {
 //selects the rating for a certain class
 function rating(req, res, next) {
     db.oneOrNone("select stars, hw, dif, book from rating, class where class.shortName =${id} and class.ID=rating.classID", req.params)
+    .then(data => {
+        res.send(data);
+    })
+    .catch(err => {
+        next(err);
+    })
+}
+
+//selects all the classes 
+function classes(req, res, next) {
+    db.oneOrNone("select * from class", req.params)
     .then(data => {
         res.send(data);
     })
