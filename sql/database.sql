@@ -1,4 +1,4 @@
-   --Database designed by Dylan 
+    --Database designed by Dylan 
 -- 
 
 DROP TABLE IF EXISTS reply;
@@ -104,7 +104,8 @@ insert into userclass values(4,4,6,'teaching');
 insert into userclass values(5,5,1,'teaching');
 insert into userclass values(6,6,3,'teaching');
 insert into userclass values(7,7,2,'teaching');
-insert into userclass values(8,3,5,'teaching');
+insert into userclass values(8,3,5,'teaching'); --cs 108
+insert into userclass values(13,2,5,'teaching'); --cs 108
 insert into userclass values(9,2,4,'teaching');
 insert into userclass values(10,1,3,'taking');
 insert into userclass values(11,1,4,'taking');
