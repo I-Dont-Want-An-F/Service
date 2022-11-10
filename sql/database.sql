@@ -143,4 +143,41 @@ insert into post values(14,6, false,7,11072022, 'What is the best way to study f
 
 
 --reply
-insert into reply values(1,1,2,10252022,'yes');
+-- ID postID user ID data text 
+insert into reply values(1,1,2,10252022,'yes'); --cs 112 
+insert into reply values(15,1,2,102520022,'second reply');
+insert into reply values(2,2,2,102520022,'I would disagree');
+insert into reply values(16,2,2,102520022,'second reply');
+insert into reply values(3,3,2,102520022,'please');
+insert into reply values(17,3,2,102520022,'second reply');
+insert into reply values(4,4,2,102520022,'Im glad I dont have to buy one');
+insert into reply values(18,4,2,102520022,'second reply');
+
+insert into reply values(5,5,2,102520022,'me too'); --cs 262 
+insert into reply values(19,5,2,102520022,'second reply');
+insert into reply values(6,6,2,102520022, 'Yes. My group practiced alot');
+insert into reply values(20,6,2,102520022,'second reply');
+
+insert into reply values(7,7,2,102520022,'Agreed');--engr 220
+insert into reply values(21,7,2,102520022,'second reply');
+insert into reply values(8,8,2,102520022,'Yes');
+insert into reply values(22,8,2,102520022,'second reply');
+
+insert into reply values(9,9,2,102520022,'Not if you have a study group'); --cs 104
+insert into reply values(23,9,2,102520022,'second reply');
+insert into reply values(10,10,2,102520022,'Try checking moodle');
+insert into reply values(24,10,2,102520022,'second reply');
+
+insert into reply values(11,11,2,102520022,'I still use the skills learned');--cs 108
+insert into reply values(25,11,2,102520022,'second reply');
+insert into reply values(12,12,2,102520022,'fall and spring');
+insert into reply values(26,12,2,102520022,'second reply');
+
+insert into reply values(13,13,2,102520022,'I would disagree');--math 171
+insert into reply values(27,13,2,102520022,'second reply');
+insert into reply values(14,14,2,102520022,'review pratice problems');
+insert into reply values(28,14,2,102520022,'second reply');
+
+
+
+

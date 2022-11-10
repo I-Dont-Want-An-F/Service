@@ -89,7 +89,7 @@ function classTook(req, res, next) {
 
  //selects all posts for a certain class 
  function posts(req, res, next) {
-    db.many("select text,post.ID from post, class where post.classID=class.ID and class.shortName =${id}", req.params)
+    db.many("select text,post.ID, users.username from post, class, users where post.classID=class.ID and class.shortName =${id} and post.userID=users.ID", req.params)
     .then(data => {
         res.send(data);
     })
@@ -100,7 +100,7 @@ function classTook(req, res, next) {
 
 //selects all comments for a certain class 
 function comments(req, res, next) {
-    db.many("select text,post.ID from post, class where post.classID=class.ID and class.shortName =${id} and post.question = false", req.params)
+    db.many("select text,post.ID,users.username from post, class,users where post.classID=class.ID and class.shortName =${id} and post.question = false and post.userID=users.ID", req.params)
     .then(data => {
         res.send(data);
     })
@@ -110,7 +110,7 @@ function comments(req, res, next) {
 }
 //selects all the questions for a certian class
 function questions(req, res, next) {
-    db.many("select text,post.ID from post, class where post.classID=class.ID and class.shortName =${id} and post.question = true", req.params)
+    db.many("select text,post.ID, users.username from post, users, class where post.classID=class.ID and class.shortName =${id} and post.question = true and post.userID=users.ID", req.params)
     .then(data => {
         res.send(data);
     })
