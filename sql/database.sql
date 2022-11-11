@@ -5,6 +5,7 @@ DROP TABLE IF EXISTS reply;
 DROP TABLE IF EXISTS post;
 DROP TABLE IF EXISTS rating;
 DROP TABLE IF EXISTS userclass;
+DROP TABLE IF EXISTS messagesrooms;
 DROP TABLE IF EXISTS messages;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS class;
@@ -60,12 +61,19 @@ create table reply(
     text varchar(1000)
     );
 
-create table messages(
-    ID integer PRIMARY KEY,
-    user1 integer references users(ID),
-    user2 integer references users(ID)
-);
+create table messagerooms(
+	ID integer PRIMARY KEY,
+    userOne integer references users(ID),
+	userTwo integer references users(ID)
+    );
 
+create table messages(
+	ID integer PRIMARY KEY,
+    roomID integer references messagerooms(ID),
+	sender integer references users(ID),
+    date integer,
+    text varchar(250)
+);
 
 -- Allow users to select data from the tables.
 GRANT SELECT ON class TO PUBLIC;
@@ -74,7 +82,8 @@ GRANT select ON userclass to PUBLIC;
 GRANT SELECT ON post to PUBLIC; 
 GRANT SELECT ON rating to PUBLIC; 
 GRANT SELECT ON messages to PUBLIC;
-
+GRANT SELECT ON messagerooms to PUBLIC;
+GRANT SELECT ON messages to PUBLIC;
 
 -- Add sample records.
 
@@ -179,6 +188,6 @@ insert into reply values(27,13,2,102520022,'second reply');
 insert into reply values(14,14,2,102520022,'review pratice problems');
 insert into reply values(28,14,2,102520022,'second reply');
 
-
-
-
+insert into messagerooms values(1,1,7);
+insert into messages values(1, 1, 1, now(), 'hello');
+insert into messages values(2, 1, 7, now(), 'hi');
