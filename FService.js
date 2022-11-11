@@ -229,11 +229,11 @@ function messages(req, res, next){
 }
 
 function sendmessage(req, res, next){
-    // db.many("select * from messages where roomID = {id}", req.params)
-    // .then(data => {
-    //     res.send(data);
-    // })
-    // .catch(err => {
-    //     next(err);
-    // })
+    db.many("insert into messages(roomID, sender, date, text) values( ${body.roomID}, ${body.sender}, (select now()), '${body.text}');", req)
+    .then(data => {
+        res.send(data);
+    })
+    .catch(err => {
+        next(err);
+    })
 }

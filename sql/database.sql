@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS reply;
 DROP TABLE IF EXISTS post;
 DROP TABLE IF EXISTS rating;
 DROP TABLE IF EXISTS userclass;
-DROP TABLE IF EXISTS messagesrooms;
+DROP TABLE IF EXISTS messagerooms;
 DROP TABLE IF EXISTS messages;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS class;
@@ -68,7 +68,7 @@ create table messagerooms(
     );
 
 create table messages(
-	ID integer PRIMARY KEY,
+	ID serial PRIMARY KEY ,
     roomID integer references messagerooms(ID),
 	sender integer references users(ID),
     date integer,
@@ -188,6 +188,6 @@ insert into reply values(27,13,2,102520022,'second reply');
 insert into reply values(14,14,2,102520022,'review pratice problems');
 insert into reply values(28,14,2,102520022,'second reply');
 
-insert into messagerooms values(1,1,7);
-insert into messages values(1, 1, 1, now(), 'hello');
-insert into messages values(2, 1, 7, now(), 'hi');
+insert into messagerooms(userOne, userTwo) values(1,7);
+insert into messages(roomID, sender, date, text) values( 1, 1, 12, 'hello');
+insert into messages(roomID, sender, date, text) values( 1, 7, 13, 'hi');
