@@ -26,14 +26,7 @@ router.get("/comments/:id", comments);//selects all the comments for a given cla
 router.get("/questions/:id", questions); //selects all the questions for a given class
 router.get("/rating/:id", rating);// retuns a rating for a class 
 router.get("/classes", classes); //returns all classes 
-router.get("/reply/:id", reply); //returns the reply to a comment
-
-router.post("/questions/:id", createcomments); // creates a question created by a user
-router.put("/questions/:id", updatecomments); // creates a question created by a user
-
-router.post("/reply/:id", createcomments); // creates a question created by a user
-router.put("/reply/:id", updatecomments); // creates a question created by a user
-
+router.get("/reply/:id", reply); //returns the reply to a comment 
 
 
 app.use(router);
@@ -105,7 +98,6 @@ function classTook(req, res, next) {
     })
 }
 
-
 //selects all comments for a certain class 
 function comments(req, res, next) {
     db.many("select text,post.ID,users.username from post, class,users where post.classID=class.ID and class.shortName =${id} and post.question = false and post.userID=users.ID", req.params)
@@ -116,28 +108,6 @@ function comments(req, res, next) {
         next(err);
     })
 }
-
-function createcomments(req, res, next) {
-    db.many("insert into text,post.ID,users.username from post, class,users where post.classID=class.ID and class.shortName =${id} and post.question = false and post.userID=users.ID", req.params)
-    .then(data => {
-        res.send(data);
-    })
-    .catch(err => {
-        next(err);
-    })
-}
-
-function updatecomments(req, res, next) {
-    db.many("UPDATE text,post.ID,users.username from post, class,users where post.classID=class.ID and class.shortName =${id} and post.question = false and post.userID=users.ID", req.params)
-    .then(data => {
-        res.send(data);
-    })
-    .catch(err => {
-        next(err);
-    })
-}
-
-
 //selects all the questions for a certian class
 function questions(req, res, next) {
     db.many("select text,post.ID, users.username from post, users, class where post.classID=class.ID and class.shortName =${id} and post.question = true and post.userID=users.ID", req.params)
@@ -148,7 +118,6 @@ function questions(req, res, next) {
         next(err);
     })
 }
-
 
 //selects the rating for a certain class
 function rating(req, res, next) {
@@ -183,24 +152,3 @@ function reply(req, res, next) {
         next(err);
     })
 }
-
-function createreply(req, res, next) {
-    db.many("INSERT into * from reply where reply.postID= ${id}", req.params)
-    .then(data => {
-        res.send(data);
-    })
-    .catch(err => {
-        next(err);
-    })
-}
-
-function updatereply(req, res, next) {
-    db.many("UPDATE * from reply where reply.postID= ${id}", req.params)
-    .then(data => {
-        res.send(data);
-    })
-    .catch(err => {
-        next(err);
-    })
-}
-
