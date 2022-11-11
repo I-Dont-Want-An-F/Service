@@ -34,7 +34,9 @@ router.put("/questions/:id", updatecomments); // update a question created by a 
 router.post("/reply", createreply); // creates a question created by a user
 router.put("/reply/:id", updatereply); // update a question created by a user
 
-
+router.get("/messageRooms/:id", messageRooms);
+router.get("/messages/:id", messages);
+router.post("messages/:content", sendmessage);
 
 app.use(router);
 app.use(errorHandler);
@@ -204,3 +206,34 @@ function updatereply(req, res, next) {
     })
 }
 
+
+function messageRooms(req, res, next){
+    db.oneOrNone("select id, userOne, userTwo from messagerooms where (userOne = {id} OR userTwo = {id})", req.params)
+    .then(data => {
+        res.send(data);
+    })
+    .catch(err => {
+        next(err);
+    })
+}
+
+
+function messages(req, res, next){
+    db.many("select * from messages where roomID = {id}", req.params)
+    .then(data => {
+        res.send(data);
+    })
+    .catch(err => {
+        next(err);
+    })
+}
+
+function sendmessage(req, res, next){
+    // db.many("select * from messages where roomID = {id}", req.params)
+    // .then(data => {
+    //     res.send(data);
+    // })
+    // .catch(err => {
+    //     next(err);
+    // })
+}
