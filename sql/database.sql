@@ -68,7 +68,7 @@ create table messagerooms(
     );
 
 create table messages(
-	ID serial PRIMARY KEY ,
+	ID  integer PRIMARY KEY ,
     roomID integer references messagerooms(ID),
 	sender integer references users(ID),
     postTime date,
@@ -188,6 +188,8 @@ insert into reply values(27,13,2,(select now()),'second reply');
 insert into reply values(14,14,2,(select now()),'review pratice problems');
 insert into reply values(28,14,2,(select now()),'second reply');
 
-insert into messagerooms(userOne, userTwo) values(1,7);
-insert into messages(roomID, sender, postTime, text) values( 1, 1, 12, 'hello');
-insert into messages(roomID, sender, postTime, text) values( 1, 7, 13, 'hi');
+--message room 
+insert into messagerooms(ID, userOne, userTwo) values(1,1,7);
+insert into messages(roomID, sender, date, text) values( 1, 1, 12, 'hello');
+insert into messages(roomID, sender, date, text) values( 1, 7, 13, 'hi');
+

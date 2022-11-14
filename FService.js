@@ -34,9 +34,9 @@ router.put("/questions/:id", updatecomments); // update a question created by a 
 router.post("/reply", createreply); // creates a question created by a user
 router.put("/reply/:id", updatereply); // update a question created by a user
 
-router.get("/messageRooms/:id", messageRooms);
+router.get("/messagerooms/:id", messageRooms);
 router.get("/messages/:id", messages);
-router.post("messages/:content", sendmessage);
+router.post("/sendmessage/:content", sendmessage);
 
 app.use(router);
 app.use(errorHandler);
