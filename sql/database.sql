@@ -38,7 +38,7 @@ CREATE TABLE rating (
 	ID integer PRIMARY KEY,
     classID integer references class(ID),
     stars integer, --out of 5 
-    hw varchar(10),  --easy medium hard
+    hw integer,  --easy medium hard
 	dif integer, --out of 5 
 	book varchar(50) --varies 
      --need to finialze what stats we want 
@@ -121,12 +121,12 @@ insert into userclass values(11,1,4,'taking');
 insert into userclass values(12,1,5,'completed');
 
 --stats 
-insert into rating values(1,1,4.5,'weeky',2.9,'not required but recommended'); --cs 112
-insert into rating values(2,2,4.8,'weekly',3.2,'not required'); --cs 262
-insert into rating values(3,3,2.1,'never',4.3,'none'); --engr 220
-insert into rating values(4,4,3.0,'daily',2.5,'none'); -- cs 104
-insert into rating values(5,5,4.8,'weekly',3.0,'Online resource'); --cs 108 
-insert into rating values(6,6,4.5,'weekly',2.8,'not required'); --math 271
+insert into rating values(1,1,4.5,5,2.9,'not required but recommended'); --cs 112
+insert into rating values(2,2,4.8,20,3.2,'not required'); --cs 262
+insert into rating values(3,3,2.1,1,4.3,'none'); --engr 220
+insert into rating values(4,4,3.0,3,2.5,'none'); -- cs 104
+insert into rating values(5,5,4.8,12,3.0,'Online resource'); --cs 108 
+insert into rating values(6,6,4.5,16,2.8,'not required'); --math 271
 
 
 --post 
