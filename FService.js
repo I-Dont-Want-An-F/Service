@@ -208,7 +208,7 @@ function updatereply(req, res, next) {
 
 
 function messageRooms(req, res, next){
-    db.many("select id, userOne, userTwo from messagerooms where (userOne = {id} OR userTwo = {id})", req.params)
+    db.many("select id, userOne, userTwo from messagerooms where (userOne = ${id} OR userTwo = ${id})", req.params)
     .then(data => {
         res.send(data);
     })
@@ -219,7 +219,7 @@ function messageRooms(req, res, next){
 
 
 function messages(req, res, next){
-    db.many("select * from messages where roomID = {id}", req.params)
+    db.many("select * from messages where roomID = ${id}", req.params)
     .then(data => {
         res.send(data);
     })
