@@ -229,7 +229,7 @@ function messages(req, res, next){
 }
 
 function sendmessage(req, res, next){
-    db.many("insert into messages(roomID, sender, date, text) values( ${body.roomID}, ${body.sender}, (select now()), '${body.text}');", req)
+    db.many("insert into messages(ID, roomID, sender, date, text) values(${body.ID}, ${body.roomID}, ${body.sender}, (select now()), '${body.text}');", req)
     .then(data => {
         res.send(data);
     })
