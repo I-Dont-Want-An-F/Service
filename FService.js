@@ -208,7 +208,7 @@ function updatereply(req, res, next) {
 
 
 function messageRooms(req, res, next){
-    db.oneOrNone("select id, userOne, userTwo from messagerooms where (userOne = {id} OR userTwo = {id})", req.params)
+    db.many("select id, userOne, userTwo from messagerooms where (userOne = {id} OR userTwo = {id})", req.params)
     .then(data => {
         res.send(data);
     })
