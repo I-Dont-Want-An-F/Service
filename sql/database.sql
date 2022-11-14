@@ -5,8 +5,8 @@ DROP TABLE IF EXISTS reply;
 DROP TABLE IF EXISTS post;
 DROP TABLE IF EXISTS rating;
 DROP TABLE IF EXISTS userclass;
-DROP TABLE IF EXISTS messagerooms;
 DROP TABLE IF EXISTS messages;
+DROP TABLE IF EXISTS messagerooms;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS class;
 
@@ -16,7 +16,7 @@ CREATE TABLE class (
 	ID integer PRIMARY KEY,
 	longName varchar(50),
     shortName varchar(10),
-    subject varchar(50)
+    subject varchar(10)
 	);
 
 CREATE TABLE users (
@@ -35,8 +35,8 @@ CREATE TABLE userclass (
 	);
 
 CREATE TABLE rating (
-	 ID integer PRIMARY KEY,
-     classID integer references class(ID),
+	ID integer PRIMARY KEY,
+    classID integer references class(ID),
     stars integer, --out of 5 
     hw varchar(10),  --easy medium hard
 	dif integer, --out of 5 
@@ -49,16 +49,16 @@ CREATE TABLE post(
     classID integer references class(ID),
     question boolean,
     userID integer references users(ID),
-    date integer,
-    text varchar(1000)
+    postTime date,
+    text text 
 );
 
 create table reply(
     ID integer PRIMARY KEY, 
     postID integer references post(ID),
     userID integer references users(ID),
-    date integer,
-    text varchar(1000)
+    postTime date,
+    text text
     );
 
 create table messagerooms(
@@ -71,8 +71,8 @@ create table messages(
 	ID  integer PRIMARY KEY ,
     roomID integer references messagerooms(ID),
 	sender integer references users(ID),
-    date integer,
-    text varchar(250)
+    postTime date,
+    text text
 );
 
 -- Allow users to select data from the tables.
@@ -130,64 +130,66 @@ insert into rating values(6,6,4.5,'weekly',2.8,'not required'); --math 271
 
 
 --post 
-insert into post values(1,1,true,1,11202022, 'is the professor helpful'); --cs 112
-insert into post values(2,1,false,1,11202022, 'this class is boring');  --cs 112 
-insert into post values(3,1,true,1,11202022, 'Should I make lab 1 easier'); --cs 112
-insert into post values(4,1, false,2,11202022, 'there is no textbook'); --cs 112
+insert into post values(1,1,true,1,(select now()), 'is the professor helpful'); --cs 112
+insert into post values(2,1,false,1,(select now()), 'this class is boring');  --cs 112 
+insert into post values(3,1,true,1,(select now()), 'Should I make lab 1 easier'); --cs 112
+insert into post values(4,1, false,2,(select now()), 'there is no textbook'); --cs 112
 
-insert into post values(5,2,false,1,11072022,'I love learning JavaScript'); -- cs 262 
-insert into post values(6,2,true,7,11072022, 'Are you guys ready for the presentation?'); --cs  262
+insert into post values(5,2,false,1,(select now()),'I love learning JavaScript'); -- cs 262 
+insert into post values(6,2,true,7,(select now()), 'Are you guys ready for the presentation?'); --cs  262
 
-insert into post values(7,3,false,1,11072022, 'this class is boring');  --engr 220 comment
-insert into post values(8,3,true,7,11072022, 'Should I make lab 1 easier'); --engr 220 question 
+insert into post values(7,3,false,1,(select now()), 'this class is boring');  --engr 220 comment
+insert into post values(8,3,true,7,(select now()), 'Should I make lab 1 easier'); --engr 220 question 
 
-insert into post values(9,4, false,1,11072022, 'This class is hard'); -- cs 104 comment 
-insert into post values(10,4,false,7,11072022,'When is this class offered'); --cs 104 question 
+insert into post values(9,4, false,1,(select now()), 'This class is hard'); -- cs 104 comment 
+insert into post values(10,4,false,7,(select now()),'When is this class offered'); --cs 104 question 
 
-insert into post values(11,5,true,1,11072022, 'Very helpful class'); --cs 108 comment 
-insert into post values(12,5,false,7,11072022, 'I deleted my Thonny! How can I fix this');  --cs 108 question 
+insert into post values(11,5,true,1,(select now()), 'Very helpful class'); --cs 108 comment 
+insert into post values(12,5,false,7,(select now()), 'I deleted my Thonny! How can I fix this');  --cs 108 question 
 
-insert into post values(13,6,true,1,11072022, 'Very easy if you took calc in high school'); --math 171 comment 
-insert into post values(14,6, false,7,11072022, 'What is the best way to study for the tests'); --math 171 question 
+insert into post values(13,6,true,1,(select now()), 'Very easy if you took calc in high school'); --math 171 comment 
+insert into post values(14,6, false,7,(select now()), 'What is the best way to study for the tests'); --math 171 question 
  
 
 
 --reply
 -- ID postID user ID data text 
-insert into reply values(1,1,2,10252022,'yes'); --cs 112 
-insert into reply values(15,1,2,102520022,'second reply');
-insert into reply values(2,2,2,102520022,'I would disagree');
-insert into reply values(16,2,2,102520022,'second reply');
-insert into reply values(3,3,2,102520022,'please');
-insert into reply values(17,3,2,102520022,'second reply');
-insert into reply values(4,4,2,102520022,'Im glad I dont have to buy one');
-insert into reply values(18,4,2,102520022,'second reply');
+insert into reply values(1,1,2,(select now()),'yes'); --cs 112 
+insert into reply values(15,1,2,(select now()),'second reply');
+insert into reply values(2,2,2,(select now()),'I would disagree');
+insert into reply values(16,2,2,(select now()),'second reply');
+insert into reply values(3,3,2,(select now()),'please');
+insert into reply values(17,3,2,(select now()),'second reply');
+insert into reply values(4,4,2,(select now()),'Im glad I dont have to buy one');
+insert into reply values(18,4,2,(select now()),'second reply');
 
-insert into reply values(5,5,2,102520022,'me too'); --cs 262 
-insert into reply values(19,5,2,102520022,'second reply');
-insert into reply values(6,6,2,102520022, 'Yes. My group practiced alot');
-insert into reply values(20,6,2,102520022,'second reply');
+insert into reply values(5,5,2,(select now()),'me too'); --cs 262 
+insert into reply values(19,5,2,(select now()),'second reply');
+insert into reply values(6,6,2,(select now()), 'Yes. My group practiced alot');
+insert into reply values(20,6,2,(select now()),'second reply');
 
-insert into reply values(7,7,2,102520022,'Agreed');--engr 220
-insert into reply values(21,7,2,102520022,'second reply');
-insert into reply values(8,8,2,102520022,'Yes');
-insert into reply values(22,8,2,102520022,'second reply');
+insert into reply values(7,7,2,(select now()),'Agreed');--engr 220
+insert into reply values(21,7,2,(select now()),'second reply');
+insert into reply values(8,8,2,(select now()),'Yes');
+insert into reply values(22,8,2,(select now()),'second reply');
 
-insert into reply values(9,9,2,102520022,'Not if you have a study group'); --cs 104
-insert into reply values(23,9,2,102520022,'second reply');
-insert into reply values(10,10,2,102520022,'Try checking moodle');
-insert into reply values(24,10,2,102520022,'second reply');
+insert into reply values(9,9,2,(select now()),'Not if you have a study group'); --cs 104
+insert into reply values(23,9,2,(select now()),'second reply');
+insert into reply values(10,10,2,(select now()),'Try checking moodle');
+insert into reply values(24,10,2,(select now()),'second reply');
 
-insert into reply values(11,11,2,102520022,'I still use the skills learned');--cs 108
-insert into reply values(25,11,2,102520022,'second reply');
-insert into reply values(12,12,2,102520022,'fall and spring');
-insert into reply values(26,12,2,102520022,'second reply');
+insert into reply values(11,11,2,(select now()),'I still use the skills learned');--cs 108
+insert into reply values(25,11,2,(select now()),'second reply');
+insert into reply values(12,12,2,(select now()),'fall and spring');
+insert into reply values(26,12,2,(select now()),'second reply');
 
-insert into reply values(13,13,2,102520022,'I would disagree');--math 171
-insert into reply values(27,13,2,102520022,'second reply');
-insert into reply values(14,14,2,102520022,'review pratice problems');
-insert into reply values(28,14,2,102520022,'second reply');
+insert into reply values(13,13,2,(select now()),'I would disagree');--math 171
+insert into reply values(27,13,2,(select now()),'second reply');
+insert into reply values(14,14,2,(select now()),'review pratice problems');
+insert into reply values(28,14,2,(select now()),'second reply');
 
+--message room 
 insert into messagerooms(ID, userOne, userTwo) values(1,1,7);
 insert into messages(roomID, sender, date, text) values( 1, 1, 12, 'hello');
 insert into messages(roomID, sender, date, text) values( 1, 7, 13, 'hi');
+
