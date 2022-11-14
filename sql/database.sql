@@ -190,6 +190,6 @@ insert into reply values(28,14,2,(select now()),'second reply');
 
 --message room 
 insert into messagerooms(ID, userOne, userTwo) values(1,1,7);
-insert into messages(roomID, sender, postTime, text) values( 1, 1, 12, 'hello');
-insert into messages(roomID, sender, postTime, text) values( 1, 7, 13, 'hi');
+insert into messages(roomID, sender, postTime, text) values( 1, 1, (select now()), 'hello');
+insert into messages(roomID, sender, postTime, text) values( 1, 7, (select now()), 'hi');
 
