@@ -5,8 +5,8 @@ DROP TABLE IF EXISTS reply;
 DROP TABLE IF EXISTS post;
 DROP TABLE IF EXISTS rating;
 DROP TABLE IF EXISTS userclass;
-DROP TABLE IF EXISTS messagerooms;
 DROP TABLE IF EXISTS messages;
+DROP TABLE IF EXISTS messagerooms;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS class;
 
@@ -35,8 +35,8 @@ CREATE TABLE userclass (
 	);
 
 CREATE TABLE rating (
-	 ID integer PRIMARY KEY,
-     classID integer references class(ID),
+	ID integer PRIMARY KEY,
+    classID integer references class(ID),
     stars integer, --out of 5 
     hw varchar(10),  --easy medium hard
 	dif integer, --out of 5 
@@ -173,20 +173,20 @@ insert into reply values(21,7,2,(select now()),'second reply');
 insert into reply values(8,8,2,(select now()),'Yes');
 insert into reply values(22,8,2,(select now()),'second reply');
 
-insert into reply values(9,9,2,102520022,'Not if you have a study group'); --cs 104
-insert into reply values(23,9,2,102520022,'second reply');
-insert into reply values(10,10,2,102520022,'Try checking moodle');
-insert into reply values(24,10,2,102520022,'second reply');
+insert into reply values(9,9,2,(select now()),'Not if you have a study group'); --cs 104
+insert into reply values(23,9,2,(select now()),'second reply');
+insert into reply values(10,10,2,(select now()),'Try checking moodle');
+insert into reply values(24,10,2,(select now()),'second reply');
 
-insert into reply values(11,11,2,102520022,'I still use the skills learned');--cs 108
-insert into reply values(25,11,2,102520022,'second reply');
-insert into reply values(12,12,2,102520022,'fall and spring');
-insert into reply values(26,12,2,102520022,'second reply');
+insert into reply values(11,11,2,(select now()),'I still use the skills learned');--cs 108
+insert into reply values(25,11,2,(select now()),'second reply');
+insert into reply values(12,12,2,(select now()),'fall and spring');
+insert into reply values(26,12,2,(select now()),'second reply');
 
-insert into reply values(13,13,2,102520022,'I would disagree');--math 171
-insert into reply values(27,13,2,102520022,'second reply');
-insert into reply values(14,14,2,102520022,'review pratice problems');
-insert into reply values(28,14,2,102520022,'second reply');
+insert into reply values(13,13,2,(select now()),'I would disagree');--math 171
+insert into reply values(27,13,2,(select now()),'second reply');
+insert into reply values(14,14,2,(select now()),'review pratice problems');
+insert into reply values(28,14,2,(select now()),'second reply');
 
 insert into messagerooms(userOne, userTwo) values(1,7);
 insert into messages(roomID, sender, postTime, text) values( 1, 1, 12, 'hello');
