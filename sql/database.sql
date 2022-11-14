@@ -22,7 +22,7 @@ CREATE TABLE class (
 CREATE TABLE users (
 	ID integer PRIMARY KEY, 
     name varchar(50),
-    username varchar(50),
+    username varchar(50) unique,
     emailAddress varchar(50) NOT NULL,
     position varchar(20)
 	);
