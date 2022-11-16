@@ -192,7 +192,7 @@ function reply(req, res, next) {
 
 //returns all classes by subject 
 function subject(req, res, next) {
-    db.many("Select * from classes where subject=${id}", req.params)
+    db.many("Select * from class where subject=${id}", req.params)
         .then(data => {
             res.send(data);
         })
@@ -203,7 +203,7 @@ function subject(req, res, next) {
 
 //returns all classes by shortname
 function shortname(req, res, next) {
-    db.many("Select * from classes where shortname=${id}", req.params)
+    db.many("Select * from class where shortName=${id}", req.params)
         .then(data => {
             res.send(data);
         })
