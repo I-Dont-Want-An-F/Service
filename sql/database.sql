@@ -16,7 +16,7 @@ CREATE TABLE class (
 	ID integer PRIMARY KEY,
 	longName varchar(50),
     shortName varchar(10),
-    subject varchar(10)
+    subject varchar(20)
 	);
 
 CREATE TABLE users (
@@ -88,11 +88,11 @@ GRANT SELECT ON messages to PUBLIC;
 -- Add sample records.
 
  --classes
-insert into class values(1,'Intro to data Structures', 'CS 112', 'CS');
-insert into class values(2,'Software Engineering', 'CS 262', 'CS');
-insert into class values(3,'Intro to Computer Architecture', 'ENGR 220','ENGR');
-insert into class values(4, 'Applied Computing', 'CS 104', 'CS');
-insert into class values(5, 'Intro to Computing', 'CS 108','CS');
+insert into class values(1,'Intro to data Structures', 'CS 112', 'Computer Science');
+insert into class values(2,'Software Engineering', 'CS 262', 'Computer Science');
+insert into class values(3,'Intro to Computer Architecture', 'ENGR 220','Engineering');
+insert into class values(4, 'Applied Computing', 'CS 104', 'Computer Science');
+insert into class values(5, 'Intro to Computing', 'CS 108','Computer Science');
 insert into class values(6, 'Calculus 1', 'MATH 171', 'MATH');
 
 
