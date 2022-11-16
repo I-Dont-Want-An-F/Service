@@ -27,6 +27,10 @@ router.get("/questions/:id", questions); //selects all the questions for a given
 router.get("/rating/:id", rating);// retuns a rating for a class 
 router.get("/classes", classes); //returns all classes 
 router.get("/reply/:id", reply); //returns the reply to a comment
+router.get("/subject/:id", subject); //returns all classes sorted by subject  id is subject 
+router.get("/shortname/:id", shortname); //returns all classes sorted by shortname id is shortname 
+
+
 
 router.post("/questions", createcomments); // creates a question created by a user
 router.put("/questions/:id", updatecomments); // update a question created by a user
@@ -185,6 +189,29 @@ function reply(req, res, next) {
         next(err);
     })
 }
+
+//returns all classes by subject 
+function subject(req, res, next) {
+    db.many("Select * from classes where subject=${id}", req.params)
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            next(err);
+        })
+}
+
+//returns all classes by shortname
+function shortname(req, res, next) {
+    db.many("Select * from classes where shortname=${id}", req.params)
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            next(err);
+        })
+}
+
 
 function createreply(req, res, next) {
     db.many("INSERT into * from reply where reply.postID= ${id}", req.params)
