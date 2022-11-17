@@ -117,7 +117,7 @@ insert into users values(7, 'joe','def12', 'def12@calvin.edu', 'studnent');
 
 --userclass 
 insert into userclass values(1,1,1,'taking');
-insert into userclass values(2,2,2,'completed');
+insert into userclass values(2,1,2,'completed');
 insert into userclass values(3,3,2,'teaching');
 insert into userclass values(4,4,6,'teaching');
 insert into userclass values(5,5,1,'teaching');

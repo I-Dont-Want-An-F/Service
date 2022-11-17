@@ -80,7 +80,7 @@ function readProf(req, res, next) {
 
 //selects the classes a user is taking 
 function classTake(req, res, next) {
-    db.many("Select shortName from  users, userclass, class WHERE users.position = 'student' AND users.username = ${id} and userclass.classID=class.ID and userclass.userID=users.ID and role= 'taking'", req.params)
+    db.many("Select shortName, class.ID, longname, subject  from  users, userclass, class WHERE users.position = 'student' AND users.username = ${id} and userclass.classID=class.ID and userclass.userID=users.ID and role= 'taking'", req.params)
     .then(data => {
         res.send(data);
     })
@@ -91,7 +91,7 @@ function classTake(req, res, next) {
 
  //selects the classes a user has completed
 function classTook(req, res, next) {
-    db.many(" Select shortName from  users, userclass, class where users.position = 'student' and users.username = ${id} and userclass.classID=class.ID  and userclass.userID=users.ID and role= 'completed'", req.params)
+    db.many(" Select shortName, class.ID, longname, subject from  users, userclass, class where users.position = 'student' and users.username = ${id} and userclass.classID=class.ID  and userclass.userID=users.ID and role= 'completed'", req.params)
     .then(data => {
         res.send(data);
     })
