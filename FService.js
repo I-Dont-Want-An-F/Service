@@ -178,10 +178,9 @@ function classes(req, res, next) {
     })
 }
 
-
 //selects the reply 
 function reply(req, res, next) {
-    db.many("select * from reply where reply.postID= ${id}", req.params)
+    db.many("select text,reply.ID, users.username  from reply,users where reply.userID=users.ID and reply.postID= ${id}", req.params)
     .then(data => {
         res.send(data);
     })
