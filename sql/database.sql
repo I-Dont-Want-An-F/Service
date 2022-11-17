@@ -94,6 +94,16 @@ insert into class values(3,'Intro to Computer Architecture', 'ENGR 220','enginee
 insert into class values(4, 'Applied Computing', 'CS 104', 'computer science');
 insert into class values(5, 'Intro to Computing', 'CS 108','computer science');
 insert into class values(6, 'Calculus 1', 'MATH 171', 'math');
+insert into class values(7, 'Calculus 2', 'MATH 172', 'math');
+--no rating, proff, etc for these ones 
+insert into class values(8,'Statics and Dynamics', 'ENGR 202','engineering');
+insert into class values(9,'Intro to Ciruit Analysis', 'ENGR 204','engineering');
+insert into class values(10,'Intro to Conservation Laws', 'ENGR 209','engineering');
+insert into class values(11,'Written Rhetoric', 'ENGL 101','english');
+insert into class values(12,'Written Rhetoric 2', 'ENGL 102','english');
+insert into class values(12,'Biblical Literature and Theology', 'REL 121','religion');
+
+
 
 
 --users
