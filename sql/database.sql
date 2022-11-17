@@ -97,11 +97,11 @@ insert into class values(6, 'Calculus 1', 'MATH 171', 'math');
 insert into class values(7, 'Calculus 2', 'MATH 172', 'math');
 --no rating, proff, etc for these ones 
 insert into class values(8,'Statics and Dynamics', 'ENGR 202','engineering');
-insert into class values(9,'Intro to Ciruit Analysis', 'ENGR 204','engineering');
-insert into class values(10,'Intro to Conservation Laws', 'ENGR 209','engineering');
+insert into class values(9,'Intro to Ciruit Analysis and Electronics', 'ENGR 204','engineering');
+insert into class values(10,'Intro to Conservation Laws & Fluid Mechanics', 'ENGR 209','engineering');
 insert into class values(11,'Written Rhetoric', 'ENGL 101','english');
 insert into class values(12,'Written Rhetoric 2', 'ENGL 102','english');
-insert into class values(12,'Biblical Literature and Theology', 'REL 121','religion');
+insert into class values(13,'Biblical Literature and Theology', 'REL 121','religion');
 
 
 
