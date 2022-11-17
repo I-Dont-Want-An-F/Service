@@ -40,7 +40,7 @@ router.put("/reply/:id", updatereply); // update a question created by a user
 
 router.get("/messagerooms/:id", messageRooms);
 router.get("/messages/:id", messages);
-router.post("/sendmessage/:content", sendmessage);
+router.post("/sendmessage", sendmessage);
 
 app.use(router);
 app.use(errorHandler);
@@ -235,7 +235,7 @@ function updatereply(req, res, next) {
 
 
 function messageRooms(req, res, next){
-    db.many("select id, userOne, userTwo from messagerooms where (userOne = (select users.id from users where username = `${1}`) OR userTwo = (select users.id from users where username = `${1}`) );", req.params)
+    db.many("select id, userOne, userTwo from messagerooms where (userOne = (select users.id from users where username = ${id}) OR userTwo = (select users.id from users where username = ${id}) );", req.params)
     .then(data => {
         res.send(data);
     })
@@ -256,11 +256,11 @@ function messages(req, res, next){
 }
 
 function sendmessage(req, res, next){
-    db.many("insert into messages(ID, roomID, sender, date, text) values(${body.ID}, ${body.roomID}, (select users.id from users where username = `${body.sender}`), (select now()), `${body.text}`);", req)
+    db.many("insert into messages(ID, roomID, sender, posttime, text) values(${body.ID}, ${body.roomID}, (select users.id from users where username = ${body.sender}), (select now()), ${body.text});", req)
     .then(data => {
-        res.send(data);
+        res.sendStatus(200);
     })
     .catch(err => {
-        next(err);
+       next(err);
     })
 }
