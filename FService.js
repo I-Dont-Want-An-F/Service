@@ -245,7 +245,7 @@ function messageRooms(req, res, next){
 
 
 function messages(req, res, next){
-    db.many("select * from messages where roomID = ${id}", req.params)
+    db.many("select id, (select username from users where id = sender), posttime, text from messages where roomID = ${id}", req.params)
     .then(data => {
         res.send(data);
     })
