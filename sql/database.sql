@@ -87,8 +87,8 @@ GRANT SELECT ON messages to PUBLIC;
 
 -- Add sample records.
 
- --classes
-insert into class values(1,'Intro to data Structures', 'CS 112', 'computer science');
+ --classes(ID, longname,shortName, subject)
+insert into class values(1,'Intro to Data Structures', 'CS 112', 'computer science');
 insert into class values(2,'Software Engineering', 'CS 262', 'computer science');
 insert into class values(3,'Intro to Computer Architecture', 'ENGR 220','engineering');
 insert into class values(4, 'Applied Computing', 'CS 104', 'computer science');
@@ -106,7 +106,7 @@ insert into class values(13,'Biblical Literature and Theology', 'REL 121','relig
 
 
 
---users
+--users (ID, name, username, emailAddress, postion)
 insert into users values(1,'john','abc12','abc12@calvin.edu', 'student');
 insert into users values(2, 'Derek Schuurman','derek.schurrman', 'derek.schurrman@calvin.edu', 'professor');
 insert into users values(3, 'Keith VanderLinden','keith.vanderlinden', 'keith.vanderlinden@calvin.edu', 'professor');
@@ -114,8 +114,8 @@ insert into users values(4, 'Chris Moseley','chris.moseley', 'chris.moseley@calv
 insert into users values(5, 'Victor Norman','victor.norman', 'victor.norman@calvin.edu', 'professor');
 insert into users values(6, 'Mark Michmerhuizen', 'mark.michmerhuizen', 'mark.michmerhuizen@calvin.edu', 'professor');
 insert into users values(7, 'joe','def12', 'def12@calvin.edu', 'studnent');
-
---userclass 
+ 
+--userclass (ID, userID, classID, role)
 insert into userclass values(1,1,1,'taking');
 insert into userclass values(2,1,2,'completed');
 insert into userclass values(3,3,2,'teaching');
@@ -130,7 +130,7 @@ insert into userclass values(10,1,3,'taking');
 insert into userclass values(11,1,4,'taking');
 insert into userclass values(12,1,5,'completed');
 
---stats 
+--stats (ID, classID, stars, hw, dif, book)
 insert into rating values(1,1,4.5,5,2.9,'not required but recommended'); --cs 112
 insert into rating values(2,2,4.8,20,3.2,'not required'); --cs 262
 insert into rating values(3,3,2.1,1,4.3,'none'); --engr 220
@@ -139,7 +139,7 @@ insert into rating values(5,5,4.8,12,3.0,'Online resource'); --cs 108
 insert into rating values(6,6,4.5,16,2.8,'not required'); --math 271
 
 
---post 
+--post (ID,classID,question, userID,postTime)
 insert into post values(1,1,true,1,(select now()), 'is the professor helpful'); --cs 112
 insert into post values(2,1,false,1,(select now()), 'this class is boring');  --cs 112 
 insert into post values(3,1,true,1,(select now()), 'Should I make lab 1 easier'); --cs 112
@@ -162,7 +162,7 @@ insert into post values(14,6, false,7,(select now()), 'What is the best way to s
  
 
 
---reply
+--reply (
 -- ID postID user ID data text 
 insert into reply values(1,1,2,(select now()),'yes'); --cs 112 
 insert into reply values(15,1,2,(select now()),'second reply');
