@@ -114,6 +114,7 @@ insert into users values(4, 'Chris Moseley','chris.moseley', 'chris.moseley@calv
 insert into users values(5, 'Victor Norman','victor.norman', 'victor.norman@calvin.edu', 'professor');
 insert into users values(6, 'Mark Michmerhuizen', 'mark.michmerhuizen', 'mark.michmerhuizen@calvin.edu', 'professor');
 insert into users values(7, 'joe','def12', 'def12@calvin.edu', 'studnent');
+insert into users values(8, 'joe', 'xyz15', 'xyz15@calvin.edu','student');
  
 --userclass (ID, userID, classID, role)
 insert into userclass values(1,1,1,'taking');
@@ -148,14 +149,14 @@ insert into post values(4,1, false,2,(select now()), 'there is no textbook'); --
 insert into post values(5,2,false,1,(select now()),'I love learning JavaScript'); -- cs 262 
 insert into post values(6,2,true,7,(select now()), 'Are you guys ready for the presentation?'); --cs  262
 
-insert into post values(7,3,false,1,(select now()), 'this class is boring');  --engr 220 comment
-insert into post values(8,3,true,7,(select now()), 'Should I make lab 1 easier'); --engr 220 question 
+insert into post values(8,3,false,1,(select now()), 'this class is boring');  --engr 220 comment
+insert into post values(7,3,true,7,(select now()), 'Should I make lab 1 easier'); --engr 220 question 
 
-insert into post values(9,4, false,1,(select now()), 'This class is hard'); -- cs 104 comment 
+insert into post values(9,4, false,8,(select now()), 'This class is hard'); -- cs 104 comment 
 insert into post values(10,4,false,7,(select now()),'When is this class offered'); --cs 104 question 
 
-insert into post values(11,5,true,1,(select now()), 'Very helpful class'); --cs 108 comment 
-insert into post values(12,5,false,7,(select now()), 'I deleted my Thonny! How can I fix this');  --cs 108 question 
+insert into post values(11,5,true,7,(select now()), 'Very helpful class'); --cs 108 comment 
+insert into post values(12,5,false,8,(select now()), 'What coding language is used in this class');  --cs 108 question 
 
 insert into post values(13,6,true,1,(select now()), 'Very easy if you took calc in high school'); --math 171 comment 
 insert into post values(14,6, false,7,(select now()), 'What is the best way to study for the tests'); --math 171 question 
@@ -190,8 +191,8 @@ insert into reply values(24,10,2,(select now()),'second reply');
 
 insert into reply values(11,11,2,(select now()),'I still use the skills learned');--cs 108
 insert into reply values(25,11,2,(select now()),'second reply');
-insert into reply values(12,12,2,(select now()),'fall and spring');
-insert into reply values(26,12,2,(select now()),'second reply');
+insert into reply values(26,12,7,(select now()),'I really enjoyed coding in python');
+insert into reply values(12,12,7,(select now()),'This class using python');
 
 insert into reply values(13,13,2,(select now()),'I would disagree');--math 171
 insert into reply values(27,13,2,(select now()),'second reply');
