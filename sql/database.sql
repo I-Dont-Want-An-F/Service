@@ -37,6 +37,7 @@ CREATE TABLE userclass (
 CREATE TABLE rating (
 	ID integer PRIMARY KEY,
     classID integer references class(ID),
+    userID integer references users(ID),
     stars integer, --out of 5 
     hw integer,  --easy medium hard
 	dif integer, --out of 5 
@@ -131,13 +132,31 @@ insert into userclass values(10,1,3,'taking');
 insert into userclass values(11,1,4,'taking');
 insert into userclass values(12,1,5,'completed');
 
---stats (ID, classID, stars, hw, dif, book)
-insert into rating values(1,1,4.5,5,2.9,'not required but recommended'); --cs 112
-insert into rating values(2,2,4.8,20,3.2,'not required'); --cs 262
-insert into rating values(3,3,2.1,1,4.3,'none'); --engr 220
-insert into rating values(4,4,3.0,3,2.5,'none'); -- cs 104
-insert into rating values(5,5,4.8,12,3.0,'Online resource'); --cs 108 
-insert into rating values(6,6,4.5,16,2.8,'not required'); --math 271
+--stats (ID, classID, userID stars, hw, dif, book)
+--cs 112
+insert into rating values(1,1,1,4.5,5,2.9,'not required'); 
+insert into rating values(2,1,7,4.8,20,3.2,'not required'); 
+insert into rating values(3,1,8,2.1,1,4.3,'not required');
+--cs 262
+insert into rating values(4,2,1,4.5,5,2.9,'not required');  
+insert into rating values(5,2,7,4.8,20,3.2,'not required'); 
+insert into rating values(6,2,8,2.1,1,4.3,'not required');
+--engr 220
+insert into rating values(7,3,1,4.5,5,2.9,'not required');  
+insert into rating values(8,3,7,4.8,20,3.2,'not required'); 
+insert into rating values(9,3,8,2.1,1,4.3,'not required');
+-- cs 104
+insert into rating values(10,4,1,4.5,5,2.9,'not required');  
+insert into rating values(11,4,7,4.8,20,3.2,'not required'); 
+insert into rating values(12,4,8,2.1,1,4.3,'not required');
+--cs 108 
+insert into rating values(13,5,1,4.5,5,2.9,'not required');  
+insert into rating values(14,5,7,4.8,20,3.2,'not required'); 
+insert into rating values(15,5,8,2.1,1,4.3,'not required');
+--math 271
+insert into rating values(16,6,1,3.0,3,2.5,'not required'); 
+insert into rating values(17,6,7,4.8,12,3.0,'not required'); 
+insert into rating values(18,6,8,4.5,16,2.8,'not required');  
 
 
 --post (ID,classID,question, userID,postTime)
