@@ -1,4 +1,4 @@
-    --Database designed by Dylan 
+     --Database designed by Dylan 
 -- 
 
 DROP TABLE IF EXISTS reply;
@@ -118,8 +118,9 @@ insert into users values(7, 'joe','def12', 'def12@calvin.edu', 'studnent');
 insert into users values(8, 'joe', 'xyz15', 'xyz15@calvin.edu','student');
  
 --userclass (ID, userID, classID, role)
-insert into userclass values(1,1,1,'taking');
+
 insert into userclass values(3,3,2,'teaching');
+insert into userclass values(20,1,6,'completed');
 insert into userclass values(4,4,6,'teaching');
 insert into userclass values(5,5,1,'teaching');
 insert into userclass values(6,6,3,'teaching');
@@ -127,16 +128,17 @@ insert into userclass values(7,7,2,'teaching');
 insert into userclass values(8,3,5,'teaching'); --cs 108
 insert into userclass values(13,2,5,'teaching'); --cs 108
 insert into userclass values(9,2,4,'teaching');
-insert into userclass values(10,1,3,'taking');
-insert into userclass values(11,1,4,'taking');
+insert into userclass values(10,1,7,'taking');
+insert into userclass values(19,1,5,'taking');
 
 --Def
-insert into userclass values(13,7,1,'taking');
+insert into userclass values(2,7,1,'taking');
 insert into userclass values(14,7,3,'taking');
 insert into userclass values(15,7,6,'taking');
 insert into userclass values(16,7,11,'completed');
 insert into userclass values(17,7,5,'completed');
 insert into userclass values(18,7,13,'completed');
+
 
 --stats (ID, classID, userID stars, hw, dif, book)
 --cs 112
@@ -228,4 +230,3 @@ insert into reply values(28,14,2,(select now()),'second reply');
 insert into messagerooms(ID, userOne, userTwo) values(1,1,7);
 insert into messages(ID, roomID, sender, postTime, text) values(1, 1, 1, (select now()), 'hello');
 insert into messages(ID, roomID, sender, postTime, text) values(2, 1, 7, (select now()), 'hi');
-
