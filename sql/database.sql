@@ -119,7 +119,6 @@ insert into users values(8, 'joe', 'xyz15', 'xyz15@calvin.edu','student');
  
 --userclass (ID, userID, classID, role)
 insert into userclass values(1,1,1,'taking');
-insert into userclass values(2,1,2,'completed');
 insert into userclass values(3,3,2,'teaching');
 insert into userclass values(4,4,6,'teaching');
 insert into userclass values(5,5,1,'teaching');
@@ -130,7 +129,14 @@ insert into userclass values(13,2,5,'teaching'); --cs 108
 insert into userclass values(9,2,4,'teaching');
 insert into userclass values(10,1,3,'taking');
 insert into userclass values(11,1,4,'taking');
-insert into userclass values(12,1,5,'completed');
+
+--Def
+insert into userclass values(13,7,1,'taking');
+insert into userclass values(14,7,3,'taking');
+insert into userclass values(15,7,6,'taking');
+insert into userclass values(16,7,11,'completed');
+insert into userclass values(17,7,5,'completed');
+insert into userclass values(18,7,13,'completed');
 
 --stats (ID, classID, userID stars, hw, dif, book)
 --cs 112
