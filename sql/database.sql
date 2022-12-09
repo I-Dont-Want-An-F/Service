@@ -114,7 +114,7 @@ insert into users values(3, 'Keith VanderLinden','keith.vanderlinden', 'keith.va
 insert into users values(4, 'Chris Moseley','chris.moseley', 'chris.moseley@calvin.edu', 'professor');
 insert into users values(5, 'Victor Norman','victor.norman', 'victor.norman@calvin.edu', 'professor');
 insert into users values(6, 'Mark Michmerhuizen', 'mark.michmerhuizen', 'mark.michmerhuizen@calvin.edu', 'professor');
-insert into users values(7, 'joe','def12', 'def12@calvin.edu', 'studnent');
+insert into users values(7, 'joe','def12', 'def12@calvin.edu', 'student');
 insert into users values(8, 'joe', 'xyz15', 'xyz15@calvin.edu','student');
  
 --userclass (ID, userID, classID, role)
