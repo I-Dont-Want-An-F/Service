@@ -1,4 +1,4 @@
-   
+      
 // Set up the database connection.
 const pgp = require('pg-promise')();
 const db = pgp({
@@ -21,22 +21,28 @@ router.get("/", readHelloMessage);
 router.get("/prof/:id", readProf); //selects prof that teach a certain class 
 router.get("/classtake/:id", classTake); // selects the classes a student is taking
 router.get("/classtook/:id",classTook); //selects the classes a student has taken
+
+
 router.get("/post/:id", posts); //selects all the posts for a given class
-router.get("/comments/:id", comments);//selects all the comments for a given class
+router.post("/createposts", createposts);
+
+
+
 router.get("/questions/:id", questions); //selects all the questions for a given class
 router.get("/rating/:id", rating);// retuns a rating for a class 
 router.get("/classes", classes); //returns all classes 
-router.get("/reply/:id", reply); //returns the reply to a comment
+
 router.get("/subject/:id", subject); //returns all classes sorted by subject  id is subject 
 router.get("/shortname/:id", shortname); //returns all classes sorted by shortname id is shortname 
 
 
+router.get("/comments/:id", comments);//selects all the comments for a given class
+router.post("/createcomments", createcomments); // creates a question created by a user
+router.put("/updatecomments", updatecomments); // update a question created by a user
 
-router.post("/questions", createcomments); // creates a question created by a user
-router.put("/questions/:id", updatecomments); // update a question created by a user
-
-router.post("/reply", createreply); // creates a question created by a user
-router.put("/reply/:id", updatereply); // update a question created by a user
+router.get("/reply/:id", reply); //returns the reply to a comment
+router.post("/createreply", createreply); // creates a question created by a user
+router.put("/updatereply", updatereply); // update a question created by a user
 
 router.get("/messagerooms/:id", messageRooms);
 router.get("/messages/:id", messages);
@@ -111,6 +117,15 @@ function classTook(req, res, next) {
     })
 }
 
+function createposts(req, res, next) {
+    db.many("insert into post(ID, classID, question, userID, postTime, text) values(${body.ID}, (${body.classID}), false , (select users.id from users where username = 'abc12'),  (select now()), ${body.text});", req)
+    .then(data => {
+        res.send(data);
+    })
+    .catch(err => {
+        next(err);
+    })
+}
 
 //selects all comments for a certain class 
 function comments(req, res, next) {
@@ -189,6 +204,30 @@ function reply(req, res, next) {
     })
 }
 
+
+
+function createreply(req, res, next) {
+    db.many("insert into reply(ID, postID, userID, postTime, text) values(${body.ID},  (select post.id from post where classID = 1  AND text = 'is the professor helpful'),  (select users.id from users where username = 'abc12'), (select now()), ${body.text});", req)
+    
+    .then(data => {
+        res.sendStatus(200);
+    })
+    .catch(err => {
+        next(err);
+    })
+}
+
+
+function updatereply(req, res, next) {
+    db.many("UPDATE * from reply where reply.postID= ${id}", req.params)
+    .then(data => {
+        res.send(data);
+    })
+    .catch(err => {
+        next(err);
+    })
+}
+
 //returns all classes by subject 
 function subject(req, res, next) {
     db.many("Select * from class where subject=${id}", req.params)
@@ -212,25 +251,6 @@ function shortname(req, res, next) {
 }
 
 
-function createreply(req, res, next) {
-    db.many("INSERT into * from reply where reply.postID= ${id}", req.params)
-    .then(data => {
-        res.send(data);
-    })
-    .catch(err => {
-        next(err);
-    })
-}
-
-function updatereply(req, res, next) {
-    db.many("UPDATE * from reply where reply.postID= ${id}", req.params)
-    .then(data => {
-        res.send(data);
-    })
-    .catch(err => {
-        next(err);
-    })
-}
 
 
 function messageRooms(req, res, next){
@@ -263,3 +283,13 @@ function sendmessage(req, res, next){
        next(err);
     })
 }
+
+// function createuserid(req, res, next){
+//     db.many("insert into user(ID, username, sender, posttime, text) values(${body.ID}, ${body.roomID}, (select users.id from users where username = ${body.sender}), (select now()), ${body.text});", req)
+//     .then(data => {
+//         res.sendStatus(200);
+//     })
+//     .catch(err => {
+//        next(err);
+//     })
+// }
